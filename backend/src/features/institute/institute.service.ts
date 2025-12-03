@@ -20,5 +20,4 @@ export const DeleteInstituteService = async (id: string) => {
     const institute = await InstituteModel.findByIdAndDelete(id)
     if (!institute) throw new AppError("institute not found", 400);
     return institute
-
 }
