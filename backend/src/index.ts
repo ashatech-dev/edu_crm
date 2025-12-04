@@ -18,9 +18,6 @@ import { errorHandler } from "./shared/middlewares/error.middleware";
 import { AuthRouter } from "./features/auth/auth.route";
 import { imagesRouter } from "./features/uploads/upload.route";
 import { UsersRouter } from "./features/users/user.route";
-import { instituteRouter } from "./features/institute/institute.route";
-import { roleRouter } from "./features/roles/role.route";
-import { batchRouter } from "./features/batch/batch.route";
 
 const WHITELIST_DOMAINS = process.env.CORS_WHITELIST?.split(",");
 
@@ -60,9 +57,7 @@ setupSwagger(app);
 app.use("/auth", AuthRouter);
 app.use("/users", UsersRouter);
 app.use("/images", imagesRouter);
-app.use("/institute", instituteRouter);
-app.use("/roles", roleRouter);
-app.use("/batches", batchRouter);
+
 // do not touch this! as error middleware will be in the end of all the routes!
 app.use(errorHandler);
 
