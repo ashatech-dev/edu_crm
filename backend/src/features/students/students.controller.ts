@@ -101,3 +101,43 @@ export const FetchStudentList = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const FetchStudentById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+
+    if (!id) {
+      return SendResponse(res, {
+        status_code: 400,
+        message: "Student ID is required",
+        data: "",
+      });
+    }
+
+    const student = await StudentModel.findById(id)
+      // .select("-createdAt -updatedAt");
+
+    if (!student) {
+      return SendResponse(res, {
+        status_code: 404,
+        message: "Student not found",
+        data: "",
+      });
+    }
+
+    return SendResponse(res, {
+      status_code: 200,
+      message: "Student fetched successfully",
+      data: student,
+    });
+
+  } catch (error) {
+    console.error(error);
+    return SendResponse(res, {
+      status_code: 500,
+      message: "Internal server error",
+      data: "",
+    });
+  }
+};
