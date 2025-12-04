@@ -16,15 +16,8 @@ import RequestLogger from "./shared/middlewares/request_logger.middleware";
 import { errorHandler } from "./shared/middlewares/error.middleware";
 
 import { AuthRouter } from "./features/auth/auth.route";
-import { ProductRouter } from "./features/product/products.route";
-import CategoryRouter from "./features/category/category.route";
-import { ReviewRouter } from "./features/review/review.route";
-import { CartRouter } from "./features/cart/cart.route";
-import { AddressRouter } from "./features/address/address.route";
-import { OrderRouter } from "./features/order/orders.route";
 import { imagesRouter } from "./features/uploads/upload.route";
 import { UsersRouter } from "./features/users/user.route";
-import { WishlistRouter } from "./features/wishlist/wishlist.route";
 
 const WHITELIST_DOMAINS = process.env.CORS_WHITELIST?.split(",");
 
@@ -63,14 +56,7 @@ setupSwagger(app);
 
 app.use("/auth", AuthRouter);
 app.use("/users", UsersRouter);
-app.use("/categories", CategoryRouter);
-app.use("/products", ProductRouter);
-app.use("/reviews", ReviewRouter);
 app.use("/images", imagesRouter);
-app.use("/cart", CartRouter);
-app.use("/address", AddressRouter);
-app.use("/orders", OrderRouter);
-app.use("/wishlist", WishlistRouter);
 
 // do not touch this! as error middleware will be in the end of all the routes!
 app.use(errorHandler);
