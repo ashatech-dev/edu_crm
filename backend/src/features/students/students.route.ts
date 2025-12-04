@@ -26,3 +26,12 @@ StudentRouter.get(
     status: 500,
   })
 );
+
+StudentRouter.patch(
+  "/:id",
+  catchAsyncMiddleware(StudentController.UpdateStudentById, {
+    message: "Update student fetch failed!",
+    status: 500,
+  })
+);
+
