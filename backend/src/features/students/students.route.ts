@@ -34,4 +34,11 @@ StudentRouter.patch(
     status: 500,
   })
 );
+StudentRouter.delete(
+  "/:id",
+  catchAsyncMiddleware(StudentController.DeleteStudentById, {
+    message: "delete student fetch failed!",
+    status: 500,
+  })
+);
 

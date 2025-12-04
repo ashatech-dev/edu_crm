@@ -187,3 +187,44 @@ export const UpdateStudentById = async (req: Request, res: Response) => {
     });
   }
 };
+
+
+export const DeleteStudentById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return SendResponse(res, {
+        status_code: 400,
+        message: "Student ID is required",
+        data: "",
+      });
+    }
+
+    const deletedStudent = await StudentModel.findByIdAndDelete(id);
+
+    if (!deletedStudent) {
+      return SendResponse(res, {
+        status_code: 404,
+        message: "Student not found",
+        data: "",
+      });
+    }
+
+    return SendResponse(res, {
+      status_code: 200,
+      message: "Student profile deleted successfully.",
+      data: {
+        success: true,
+      },
+    });
+
+  } catch (error) {
+    console.error(error);
+    return SendResponse(res, {
+      status_code: 500,
+      message: "Internal server error",
+      data: "",
+    });
+  }
+};
