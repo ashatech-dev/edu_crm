@@ -3,7 +3,6 @@ import { SendResponse } from "../../shared/utils/JsonResponse";
 import { StudentModel } from "./students.model";
 
 export const createStudent = async (req: Request, res: Response) => {
-  try {
     const data = req.body;
     const userId = data.userId;
 
@@ -30,17 +29,10 @@ export const createStudent = async (req: Request, res: Response) => {
       message: "Student created successfully!",
       data: student,
     });
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
 
 export const FetchStudentList = async (req: Request, res: Response) => {
-  try {
+ 
     const {
       batchId,
       status,
@@ -80,17 +72,9 @@ export const FetchStudentList = async (req: Request, res: Response) => {
         students,
       },
     });
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
 
 export const FetchStudentById = async (req: Request, res: Response) => {
-  try {
     const { id } = req.params;
     console.log(id)
 
@@ -116,18 +100,10 @@ export const FetchStudentById = async (req: Request, res: Response) => {
       message: "Student fetched successfully",
       data: student,
     });
-
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
 
 export const UpdateStudentById = async (req: Request, res: Response) => {
-  try {
+
     const { id } = req.params;
     const updateData = req.body;
 
@@ -159,19 +135,11 @@ export const UpdateStudentById = async (req: Request, res: Response) => {
       message: "Student updated successfully",
       data: updatedStudent,
     });
-
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
 
 
 export const DeleteStudentById = async (req: Request, res: Response) => {
-  try {
+
     const { id } = req.params;
 
     if (!id) {
@@ -194,18 +162,9 @@ export const DeleteStudentById = async (req: Request, res: Response) => {
       status_code: 200,
       message: "Student profile deleted successfully.",
     });
-
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error"
-    });
-  }
 };
 
 export const AddBatchesToStudent = async (req: Request, res: Response) => {
-  try {
     const { id } = req.params;
     const { batchIds } = req.body;
 
@@ -247,19 +206,10 @@ export const AddBatchesToStudent = async (req: Request, res: Response) => {
         batchIds: updatedStudent.batchIds,
       },
     });
-
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
 
 
 export const RemoveStudentFromBatch = async (req: Request, res: Response) => {
-  try {
     const { id, batchId } = req.params;
 
     if (!id || !batchId) {
@@ -286,12 +236,4 @@ export const RemoveStudentFromBatch = async (req: Request, res: Response) => {
       status_code: 200,
       message: "Student removed from batch successfully.",
     });
-
-  } catch (error) {
-    console.error(error);
-    return SendResponse(res, {
-      status_code: 500,
-      message: "Internal server error",
-    });
-  }
 };
