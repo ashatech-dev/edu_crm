@@ -10,8 +10,8 @@ export interface ICourse{
   credits: number;
   feeAmount: number;
   description:string;
-  prerequisites: string[];
-  createdAt: Date;
-  updatedAt:Date;
+  prerequisites?: string[];
+  createdAt?: Date;
+  updatedAt?:Date;
 }
 export type CourseZodType=z.infer<typeof CourseZodSchema>

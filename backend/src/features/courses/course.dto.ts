@@ -7,7 +7,7 @@ export const CourseZodSchema =z.object({
   durationMonths: z.number().positive(),
   credits:z.number().positive(),
   feeAmount: z.number().int().nonnegative(),
-  description: z.string().optional(),
+  description: z.string().min(1,"description is required"),
   prerequisites:z.array(z.string()).default([]),
   createdAt:z.coerce.date().optional(),
   updatedAt:z.coerce.date().optional()

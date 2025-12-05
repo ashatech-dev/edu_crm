@@ -9,7 +9,7 @@ import { VerifyAccessTokenMiddleWare } from "../../shared/middlewares/VerifyAcce
 // | `GET` | `/courses/:id` | Details | ALL |
 // | `GET` | `/courses/:id/batches` | Batches for a course | ALL |
 export const courseRouter=Router()
-courseRouter.get("/",getAllCourses)
+courseRouter.get("/",catchAsyncMiddleware(getAllCourses,{message:"failed to fetch courses"}))
 courseRouter.get("/:id",requestValidateRequest({params:CourseParamsZodSchema}),
 catchAsyncMiddleware(getCourseBYId,{
     message:"failed to fetch"
