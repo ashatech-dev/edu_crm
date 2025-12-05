@@ -13,8 +13,8 @@ export const updateStaff=async(req:Request,res:Response)=>{
 }
 
 export const deleteStaff=async(req:Request,res:Response)=>{
- const staff=await deleteStaffService(req.body)
- SendResponse(res,{data:staff,message:"staff deleted success !",status_code:200})
+ await deleteStaffService(req.body)
+ SendResponse(res,{message:"staff deleted success !",status_code:200})
 }
 export const getStaffById=async(req:Request,res:Response)=>{
  const {id}=req.params
@@ -22,6 +22,7 @@ export const getStaffById=async(req:Request,res:Response)=>{
  SendResponse(res,{data:staff,message:"fetch staff details !",status_code:200})
 }
 export const getAllStaff=async(req:Request,res:Response)=>{
- const staff=await getAllStaffService()
+ const {department}=req.query 
+ const staff=await getAllStaffService(department)
  SendResponse(res,{data:staff,message:"All staff fetched success !",status_code:200})
 }

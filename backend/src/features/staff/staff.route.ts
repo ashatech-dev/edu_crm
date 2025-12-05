@@ -4,11 +4,12 @@ import { createStaff, deleteStaff, getAllStaff, getStaffById, updateStaff } from
 import { VerifyAccessTokenMiddleWare } from "../../shared/middlewares/VerifyAccessToken";
 import IsAdminMiddleware from "../../shared/middlewares/isAdmin.middleware";
 import { requestValidateRequest } from "../../shared/middlewares/request_validate.middleware";
-import { staffParamsZod, staffZodSchema } from "./staff.dto";
+import { staffParamsZod, staffQueryZod, staffZodSchema } from "./staff.dto";
 export const staffRouter = Router();
 
 staffRouter.get(
   "/",
+  requestValidateRequest({query:staffQueryZod}),
   catchAsyncMiddleware(getAllStaff, { message: "fetch All staff failed", status: 500 })
 );
 staffRouter.get(

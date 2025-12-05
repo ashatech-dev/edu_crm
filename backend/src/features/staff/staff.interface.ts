@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { staffZodSchema } from "./staff.dto";
+import { staffQueryZod, staffZodSchema } from "./staff.dto";
 import z from "zod";
 
 export interface IStaff{
@@ -9,9 +9,10 @@ export interface IStaff{
       department: string,
       qualification: string,
       dateOfJoining: Date,
-      salaryGrade: string,
-      createdAt: Date,
-      updatedAt:Date
+      salaryGrade?: string,
+      createdAt?: Date,
+      updatedAt?:Date
 }
 
 export type staffZodType=z.infer<typeof staffZodSchema>
+export type staffZodQueryType=z.infer<typeof staffQueryZod>
