@@ -1,9 +1,11 @@
 import z from "zod";
 
+const code=z.string().min(3,"code is required")
+
 export const CourseZodSchema =z.object({
   instituteId:z.string().length(24),
   name:z.string().min(3,"Min 3 character is required").max(50, "Max 50 character is required"),
-  code:z.string().min(1,"code is required"),
+  code:code,
   durationMonths: z.number().positive(),
   credits:z.number().positive(),
   feeAmount: z.number().int().nonnegative(),
@@ -15,4 +17,8 @@ export const CourseZodSchema =z.object({
 
 export const CourseParamsZodSchema=z.object({
   id:z.string().regex(/^[0-9a-f]{24}$/,"Invalid object Id")
+})
+
+export const CourseQueryZodSchema=z.object({
+  code:code.optional()
 })

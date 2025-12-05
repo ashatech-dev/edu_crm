@@ -38,7 +38,11 @@ export const getCourseByIdService = async (id: string) => {
     return course
 }
 
-export const getAllCoursesService = async () => {
-    const course = await CourseModel.find({})
+export const getAllCoursesService = async (code?: string) => {
+    const filter: Record<string, string> = {}
+    if (code !== undefined) {
+        filter.code = code
+    }
+    const course = await CourseModel.find(filter).select("-instituteId").lean()
     return course
 }
