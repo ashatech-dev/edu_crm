@@ -1,6 +1,4 @@
 
-import { GENDER } from "../users/user.interface";
-
 export enum STUDENT_STATUS {
   PROSPECT = "PROSPECT",
   ENROLLED = "ENROLLED",
@@ -13,7 +11,14 @@ export const STUDENT_STATUS_ARRAY = [
   STUDENT_STATUS.ENROLLED,
   STUDENT_STATUS.DROPPED,
   STUDENT_STATUS.ALUMNI,
-];
+] as const ;
+export enum GENDER {
+    MALE = "MALE",
+    FEMALE = "FEMALE",
+    OTHER = "OTHER",
+}
+
+export const GENDER_ARRAY = ["MALE", "FEMALE", "OTHER"] as const;
 
 export interface IStudentBase {
   instituteId: string;

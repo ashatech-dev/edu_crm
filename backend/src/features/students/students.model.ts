@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
-import { GENDER } from "../users/user.interface";
 import {
+  GENDER,
   IStudentStoredPublic,
   STUDENT_STATUS,
   STUDENT_STATUS_ARRAY,
