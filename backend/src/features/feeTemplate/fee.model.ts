@@ -21,6 +21,6 @@ const FeeTemplateSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-FeeTemplateSchema.index({ instituteId: 1, name: 1 }, { unique: true });
+FeeTemplateSchema.index({ instituteId: 1}, { unique: true });
 
 export const FeeTemplateModel = mongoose.model("Fee", FeeTemplateSchema);
