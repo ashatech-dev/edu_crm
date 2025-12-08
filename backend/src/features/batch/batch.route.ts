@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requestValidateRequest } from "../../shared/middlewares/request_validate.middleware";
-import { batchParamZodSchema, batchZodSchema } from "./batch.dto";
+import { batchParamZodSchema, batchQueryZodSchema, batchZodSchema } from "./batch.dto";
 import { VerifyAccessTokenMiddleWare } from "../../shared/middlewares/VerifyAccessToken";
 import IsAdminMiddleware from "../../shared/middlewares/isAdmin.middleware";
 import { catchAsyncMiddleware } from "../../shared/middlewares/catchAsync.middleware";
@@ -9,12 +9,14 @@ import {
   deleteBatch,
   getAllBatches,
   getBatchByID,
+  getStudentsByBatch,
   updateBatch,
 } from "./batch.controller";
 
 export const batchRouter = Router();
 batchRouter.get(
   "/",
+  requestValidateRequest({query:batchQueryZodSchema}),
   catchAsyncMiddleware(getAllBatches, {
     message: "all batch fetch failed",
     status: 500,
@@ -45,4 +47,9 @@ batchRouter.get(
   "/:id",
   requestValidateRequest({ params: batchParamZodSchema }),
   catchAsyncMiddleware(getBatchByID, { message: "batch fetch failed",status:500 })
+);
+batchRouter.get(
+  "/:id/students",
+  requestValidateRequest({ params: batchParamZodSchema }),
+  catchAsyncMiddleware(getStudentsByBatch, { message: "student fetch failed",status:500 })
 );

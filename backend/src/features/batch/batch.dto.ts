@@ -14,3 +14,7 @@ export const batchZodSchema=z.object({
 export const batchParamZodSchema=z.object({
     id:z.string().length(24)
 })
+
+export const batchQueryZodSchema=z.object({
+    name:z.string().min(3).max(20).optional()
+})
