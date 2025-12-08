@@ -6,9 +6,7 @@ import AppError from "../../shared/utils/AppError";
 
 export function createStudentRepository(model: Model<IStudentStoredPublic>) {
   const baseRepo = createBaseRepository<IStudentStoredPublic>(model);
-  return {
-    ...baseRepo,
-  };
+  return baseRepo
 }
 
 const studentRepo = createStudentRepository(StudentModel);
