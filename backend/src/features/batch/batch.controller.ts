@@ -37,8 +37,8 @@ export const getAllBatches = async (req: Request, res: Response) => {
 }
 
 export const getStudentsByBatch = async (req: Request, res: Response) => {
-     // const { id } = req.params;
-     const students = await getStudentsByBatchService();
+     const { id } = req.params;
+     const students = await getStudentsByBatchService(id);
      SendResponse(res, {
           data: students,
           message: "Students fetched successfully",
