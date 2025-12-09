@@ -6,7 +6,6 @@ import {
   studentParamValidation,
   studentSchemaValidation,
 } from "./students.dto";
-// import { VerifyAccessTokenMiddleWare } from "../../shared/middlewares/VerifyAccessToken";
 
 export const StudentRouter: Router = Router();
 
@@ -36,8 +35,7 @@ StudentRouter.get(
 
 StudentRouter.patch(
   "/:id",
-  requestValidateRequest({ params: studentParamValidation }),
-  requestValidateRequest({ body: studentSchemaValidation }),
+  requestValidateRequest({params: studentParamValidation, body: studentSchemaValidation }),
   catchAsyncMiddleware(StudentController.UpdateStudentById, {
     message: "Update student fetch failed!",
     status: 500,
@@ -54,8 +52,7 @@ StudentRouter.delete(
 
 StudentRouter.post(
   "/:id/batches",
-  requestValidateRequest({ params: studentParamValidation }),
-  requestValidateRequest({ body: studentSchemaValidation }),
+  requestValidateRequest({params: studentParamValidation, body: studentSchemaValidation }),
   catchAsyncMiddleware(StudentController.AddBatchesToStudent, {
     message: "Add student batches failed!",
     status: 500,
@@ -64,7 +61,7 @@ StudentRouter.post(
 StudentRouter.delete(
   "/:id/batches/:batchId",
   requestValidateRequest({ params: studentParamValidation }),
-  catchAsyncMiddleware(StudentController.RemoveStudentFromBatch, {
+  catchAsyncMiddleware(StudentController.RemoveBatch, {
     message: "Delete student batches failed!",
     status: 500,
   })
