@@ -1,5 +1,5 @@
 import AppError from "../../shared/utils/AppError";
-import { InstituteInputZodType } from "./institute.interface";
+import { InstituteInputZodType, InstituteUpdateZodType } from "./institute.interface";
 import { InstituteModel } from "./institute.model";
 
 export const CreateInstituteService = async (payload: InstituteInputZodType) => {
@@ -9,10 +9,10 @@ export const CreateInstituteService = async (payload: InstituteInputZodType) => 
     return institute
 }
 
-export const UpdateInstituteService = async (payload: InstituteInputZodType) => {
-    const email = await InstituteModel.findOne({ emailDomain: payload.emailDomain })
+export const UpdateInstituteService = async (emailDomain:InstituteInputZodType,name: InstituteUpdateZodType) => {
+    const email = await InstituteModel.findOne({emailDomain })
     if (!email) throw new AppError("Institute doesn't Exist", 404);
-    const updated = await InstituteModel.updateOne({ emailDomain: payload.emailDomain },{$set:payload})
+    const updated = await InstituteModel.updateOne({emailDomain },{$set:{name}})
     return updated
 }
 

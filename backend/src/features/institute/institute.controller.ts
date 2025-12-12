@@ -13,7 +13,8 @@ export const createInstitute = async (req: Request, res: Response) => {
 }
 
 export const updateInstitute = async (req: Request, res: Response) => {
-  const institute = await InstituteService.UpdateInstituteService(req.body);
+  const {name,emailDomain}=req.body
+  const institute = await InstituteService.UpdateInstituteService(emailDomain,name);
   SendResponse(res, {
     data: institute,
     status_code: 200,
