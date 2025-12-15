@@ -1,5 +1,5 @@
 import z from "zod"
-import { instituteParamsZodSchema, instituteZodSchema } from "./institute.dto"
+import { instituteParamsZodSchema, instituteUpdateZodSchema, instituteZodSchema } from "./institute.dto"
 
 export interface IInstituteDocument {
     name: string,
@@ -10,3 +10,4 @@ export interface IInstituteDocument {
 
 export type InstituteInputZodType=z.infer<typeof instituteZodSchema>
 export type InstituteDeleteZodType=z.infer<typeof instituteParamsZodSchema>
+export type InstituteUpdateZodType=z.infer<typeof instituteUpdateZodSchema>
