@@ -106,15 +106,17 @@ export default function AttendancePage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Attendance Management</h1>
-          <p className="text-muted-foreground">Track and manage student attendance</p>
+          <p className="text-muted-foreground">
+            Track and manage student attendance
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Select defaultValue="all">
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-45">
               <SelectValue placeholder="Select batch" />
             </SelectTrigger>
             <SelectContent>
@@ -196,24 +198,44 @@ export default function AttendancePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {attendanceData.find((d) => d.date.toDateString() === selectedDate.toDateString()) ? (
+                {attendanceData.find(
+                  (d) => d.date.toDateString() === selectedDate.toDateString()
+                ) ? (
                   <div className="space-y-4">
                     <div className="grid grid-cols-3 gap-4">
                       <div className="text-center p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
                         <p className="text-3xl font-bold text-emerald-600">
-                          {attendanceData.find((d) => d.date.toDateString() === selectedDate.toDateString())?.present}
+                          {
+                            attendanceData.find(
+                              (d) =>
+                                d.date.toDateString() ===
+                                selectedDate.toDateString()
+                            )?.present
+                          }
                         </p>
                         <p className="text-sm text-muted-foreground">Present</p>
                       </div>
                       <div className="text-center p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
                         <p className="text-3xl font-bold text-amber-600">
-                          {attendanceData.find((d) => d.date.toDateString() === selectedDate.toDateString())?.late}
+                          {
+                            attendanceData.find(
+                              (d) =>
+                                d.date.toDateString() ===
+                                selectedDate.toDateString()
+                            )?.late
+                          }
                         </p>
                         <p className="text-sm text-muted-foreground">Late</p>
                       </div>
                       <div className="text-center p-4 rounded-lg bg-red-500/10 border border-red-500/30">
                         <p className="text-3xl font-bold text-red-600">
-                          {attendanceData.find((d) => d.date.toDateString() === selectedDate.toDateString())?.absent}
+                          {
+                            attendanceData.find(
+                              (d) =>
+                                d.date.toDateString() ===
+                                selectedDate.toDateString()
+                            )?.absent
+                          }
                         </p>
                         <p className="text-sm text-muted-foreground">Absent</p>
                       </div>
@@ -235,5 +257,5 @@ export default function AttendancePage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

@@ -28,11 +28,10 @@ import {
   CreditCard,
 } from "lucide-react"
 import { api } from "@/lib/api"
-import type { InstituteSettings } from "@/lib/types"
 import { toast } from "sonner"
 
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<InstituteSettings | null>(null)
+  const [settings, setSettings] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
@@ -73,7 +72,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <AppLayout>
+    <div className="space-y-6 p-6">
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -126,7 +125,7 @@ export default function SettingsPage() {
                     <AvatarFallback>
                       {settings.name
                         .split(" ")
-                        .map((n) => n[0])
+                        .map((n: any) => n[0])
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
@@ -510,6 +509,6 @@ export default function SettingsPage() {
           </TabsContent>
         </Tabs>
       </div>
-    </AppLayout>
+    </div>
   )
 }

@@ -77,11 +77,13 @@ export default function FeesPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Fees & Payments</h1>
-          <p className="text-muted-foreground">Manage fee structures, records, and payments</p>
+          <p className="text-muted-foreground">
+            Manage fee structures, records, and payments
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <RecordPaymentDialog
@@ -152,17 +154,21 @@ export default function FeesPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredRecords.map((record) => {
-              const student = getStudentById(record.studentId)
-              if (!student) return null
+              const student = getStudentById(record.studentId);
+              if (!student) return null;
               return (
                 <StudentFeeRecord
                   key={record.id}
                   record={record}
                   student={student}
-                  onSendReminder={(r) => toast.info(`Reminder sent for ${student.name}`)}
-                  onGenerateInvoice={(r) => toast.success(`Invoice generated for ${student.name}`)}
+                  onSendReminder={(r) =>
+                    toast.info(`Reminder sent for ${student.name}`)
+                  }
+                  onGenerateInvoice={(r) =>
+                    toast.success(`Invoice generated for ${student.name}`)
+                  }
                 />
-              )
+              );
             })}
           </div>
         </TabsContent>
@@ -170,8 +176,10 @@ export default function FeesPage() {
         <TabsContent value="payments" className="space-y-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {payments.map((payment) => {
-              const record = feeRecords.find((r) => r.id === payment.feeRecordId)
-              const student = record ? getStudentById(record.studentId) : null
+              const record = feeRecords.find(
+                (r) => r.id === payment.feeRecordId
+              );
+              const student = record ? getStudentById(record.studentId) : null;
               return (
                 <PaymentCard
                   key={payment.id}
@@ -180,7 +188,7 @@ export default function FeesPage() {
                   studentPhoto={student?.photo || undefined}
                   onViewReceipt={(p) => console.log("View receipt:", p)}
                 />
-              )
+              );
             })}
           </div>
         </TabsContent>
@@ -217,20 +225,25 @@ export default function FeesPage() {
                 {feeRecords
                   .filter((r) => r.status === "overdue")
                   .map((record) => {
-                    const student = getStudentById(record.studentId)
-                    if (!student) return null
+                    const student = getStudentById(record.studentId);
+                    if (!student) return null;
                     return (
                       <StudentFeeRecord
                         key={record.id}
                         record={record}
                         student={student}
-                        onSendReminder={(r) => toast.info(`Urgent reminder sent for ${student.name}`)}
-                        onGenerateInvoice={(r) => toast.success(`Invoice generated for ${student.name}`)}
+                        onSendReminder={(r) =>
+                          toast.info(`Urgent reminder sent for ${student.name}`)
+                        }
+                        onGenerateInvoice={(r) =>
+                          toast.success(`Invoice generated for ${student.name}`)
+                        }
                       />
-                    )
+                    );
                   })}
               </div>
-              {feeRecords.filter((r) => r.status === "overdue").length === 0 && (
+              {feeRecords.filter((r) => r.status === "overdue").length ===
+                0 && (
                 <div className="text-center py-8 text-muted-foreground">
                   <AlertCircle className="h-12 w-12 mx-auto mb-2 opacity-50" />
                   <p>No overdue fee records</p>
@@ -241,5 +254,5 @@ export default function FeesPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
