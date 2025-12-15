@@ -9,5 +9,5 @@ const InstituteSchema = new Schema<IInstituteDocument>({
   updatedAt: { type: Date, default: Date.now }
 });
 
-InstituteSchema.index({emailDomain:1},{unique:true})
+InstituteSchema.index({emailDomain:1,name:1},{unique:true})
 export const InstituteModel=model("Institute",InstituteSchema)

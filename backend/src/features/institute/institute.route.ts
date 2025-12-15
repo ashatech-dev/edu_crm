@@ -2,7 +2,7 @@ import { Router } from "express";
 import { createInstitute, DeleteInstitute, fetchAllInstitute, updateInstitute } from "./institute.controller";
 import { requestValidateRequest } from "../../shared/middlewares/request_validate.middleware";
 import { catchAsyncMiddleware } from "../../shared/middlewares/catchAsync.middleware";
-import { instituteParamsZodSchema, instituteZodSchema } from "./institute.dto";
+import { instituteParamsZodSchema, instituteUpdateZodSchema, instituteZodSchema } from "./institute.dto";
 import IsAdminMiddleware from "../../shared/middlewares/isAdmin.middleware";
 import { VerifyAccessTokenMiddleWare } from "../../shared/middlewares/VerifyAccessToken";
 
@@ -103,6 +103,6 @@ instituteRouter.patch(
   "/",
   VerifyAccessTokenMiddleWare,
   IsAdminMiddleware,
-  requestValidateRequest({ body: instituteZodSchema }),
+  requestValidateRequest({ body: instituteUpdateZodSchema }),
   catchAsyncMiddleware(updateInstitute, { message: "Updation failed" })
 );
